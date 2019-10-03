@@ -17,18 +17,20 @@ CLIENT_USERNAME=$2
 PASSWORD=$3
 
 # - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -
-
-SEMP_ENDPOINT="http://localhost:8080/SEMP/v2/config/msgVpns/$MSG_VPN"
-SEMP_USERNAME=admin
-SEMP_PASSWORD=admin
-
-BODY_TEMPLATE='{"clientUsername":"%s","password":"%s"}'
-REQUEST_BODY=$(printf "$BODY_TEMPLATE" "$CLIENT_USERNAME" "$PASSWORD")
+# MODIFY THIS SECTION WITH YOUR CONNECTION DETAILS
+# - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -
+SOLACE_HOST=localhost
+SOLACE_USERNAME=admin
+SOLACE_PASSWORD=admin
 
 # - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -
 
+SEMP_ENDPOINT="http://$SOLACE_HOST:8080/SEMP/v2/config/msgVpns/$MSG_VPN"
+REQUEST_BODY_TEMPLATE='{"clientUsername":"%s","password":"%s"}'
+REQUEST_BODY=$(printf "$REQUEST_BODY_TEMPLATE" "$CLIENT_USERNAME" "$PASSWORD")
+
 curl \
-  --user $SEMP_USERNAME:$SEMP_PASSWORD \
+  --user $SOLACE_USERNAME:$SOLACE_PASSWORD \
   -H "Content-Type: application/json" \
   -d $REQUEST_BODY \
   -X POST "$SEMP_ENDPOINT/clientUsernames"

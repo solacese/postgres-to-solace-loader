@@ -39,12 +39,12 @@ async function load() {
   let { rows } = await pgClient.query(`SELECT * FROM users;`);
   // process and upload list of users
   for (let row of rows) {
-    let solaceUserObj = {
+    let solaceClientUsernameObj = {
       clientUsername: row.email,
       password: row.password
     };
     try {
-      let res = await sempClient.createClientUsername(solaceUserObj);
+      let res = await sempClient.createClientUsername(solaceClientUsernameObj);
     } catch (e) {
       console.log(e);
     }
