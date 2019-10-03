@@ -1,0 +1,26 @@
+{
+  "name": "loader",
+  "version": "1.0.0",
+  "description": "loads users from a postgres database into Solace",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src/*.js -d dist/ --presets @babel/preset-env",
+    "exec": "node dist/Loader.js",
+    "start": "npm run build && npm run exec"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "core-js": "^3.1.4",
+    "dotenv": "^8.1.0",
+    "pg": "^7.12.1",
+    "regenerator-runtime": "^0.13.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.6.2"
+  }
+}
