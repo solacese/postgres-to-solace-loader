@@ -20,9 +20,9 @@ async function load() {
   let sempClient = SEMPClient("default");
   // initialize a Postgres client using variables loaded from .env file
   const pgConnectionConfig = {
-    database: process.env.PG_DATABASE,
     host: process.env.PG_HOST,
     port: process.env.PG_PORT,
+    database: process.env.PG_DATABASE,
     user: process.env.PG_USER,
     password: process.env.PG_PASSWORD
   };
